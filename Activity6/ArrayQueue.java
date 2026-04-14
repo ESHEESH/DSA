@@ -17,6 +17,18 @@ public class ArrayQueue {
         rear = -1;
         front = 0;
     }
+
+    boolean dequeue(){
+        if(count == 0){
+            return false;
+        }
+        
+        queue[front] = null;
+        front++;
+        count--;
+        return true;
+    }
+
     boolean enqueue(String data){
         if(data == null){
             return false;
@@ -24,10 +36,12 @@ public class ArrayQueue {
         if(count == 0){
             rear = 0;
             front = 0;    
-        }else{
-            rear++;
+        }else if(rear == queue.length - 1){
+            return false;
+
         }
         queue[count] = data;
+        
         count++;
         return true;
     }
