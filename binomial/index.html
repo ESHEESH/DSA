@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galton Board — Combinatorics + Binomial Probability</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Galton board: combinatorics + binomial probability</h1>
+  <p class="subtitle">Each row of pegs is one coin flip. The bin a ball lands in is its number of "right" deflections — a live Binomial(n, p) trial.</p>
+  <p id="status">Loading Python runtime…</p>
+
+  <div class="controls">
+    <div class="control">
+      <label for="n-range">Rows (n)</label>
+      <input type="range" id="n-range" min="4" max="16" value="10" step="1">
+      <span id="n-out">10</span>
+    </div>
+    <div class="control">
+      <label for="p-range">p (right)</label>
+      <input type="range" id="p-range" min="0" max="1" value="0.5" step="0.05">
+      <span id="p-out">0.50</span>
+    </div>
+    <div class="control">
+      <label for="k-select">Highlight k</label>
+      <select id="k-select"></select>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button id="drop1" disabled>Drop 1 ball</button>
+    <button id="drop50" disabled>Drop 50 balls</button>
+    <button id="reset" disabled>Reset</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <p class="label">Trials</p>
+      <p class="value" id="stat-trials">0</p>
+    </div>
+    <div class="stat">
+      <p class="label">Exact P(X=k)</p>
+      <p class="value" id="stat-exact">–</p>
+    </div>
+    <div class="stat">
+      <p class="label">Simulated P(X=k)</p>
+      <p class="value" id="stat-sim">–</p>
+    </div>
+  </div>
+
+  <canvas id="board" width="640" height="480"></canvas>
+  <p class="note">Dots mark the exact binomial P(X=k)·trials for each bin — watch the bars converge to the curve as more balls drop. nCk and every random trial run in Python (algorithm.py), not JavaScript.</p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
